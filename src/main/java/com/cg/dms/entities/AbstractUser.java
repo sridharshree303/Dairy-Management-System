@@ -4,6 +4,7 @@ import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public abstract class AbstractUser {
+	
 	private String username;
 
 	private String firsrtName;

@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/f")
-public class FarmerRestController {
+public class FarmerController {
 
     @Autowired
     private IFarmerService iFarmerService;
