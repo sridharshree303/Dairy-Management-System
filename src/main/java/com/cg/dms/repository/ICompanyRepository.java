@@ -13,7 +13,7 @@ import com.cg.dms.entities.Farmer;
 public interface ICompanyRepository extends JpaRepository<Company, Integer> {
 
 //	public Company insertCompany(Company company);
-//	public Company updateCompany(Company company) ;//throws CompanyNotFoundException;
+//	public Company updateCompany(Company company) throws CompanyNotFoundException;
 //	public Company deleteCompany(Company company) ;
 //	public List<Farmer> getAllFormers();
 //	public Farmer getFormer(int farmerId);

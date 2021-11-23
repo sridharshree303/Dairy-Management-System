@@ -32,7 +32,7 @@ public class ICustomerService {
 		LOG.info("add New Customer Service");
 		Optional<Customer> custom = icustomerRepository.findById(customer.getCustomerId());
 		if(custom.isPresent())
-			throw new CustomerAlreadyExistsException(customer.getCustomerId()+"is always present in Customer data");
+			throw new CustomerAlreadyExistsException(customer.getCustomerId()+"is already present in Customer data");
 		else
 			return icustomerRepository.save(customer);		
 	}
@@ -53,6 +53,7 @@ public class ICustomerService {
 		LOG.info("Delete Customer By CustomerId");
 		Optional<Customer> customId = icustomerRepository.findById(customerId);
 		if (customId.isPresent()) {
+			LOG.info("Customer is available");
 			icustomerRepository.deleteById(customerId);
 			return customId.get();
 		} else {
