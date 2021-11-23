@@ -18,7 +18,7 @@ class CustomExceptionHandler {
 
 		LOG.error("handleEmployeeNotFoundException");
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("message", "Customer data not foudnd in Database");
+		headers.add("message", "Customer data not foudnd");
 		return new ResponseEntity<Object>(null, headers, HttpStatus.NOT_FOUND);
 
 	}
@@ -26,9 +26,43 @@ class CustomExceptionHandler {
 	@ExceptionHandler(CustomerAlreadyExistsException.class)
 	public ResponseEntity<Object> handleCustomerAlreadyExistsException(){
 		
-		LOG.error("CustomerAlreadyExistsException");
+		LOG.error("handleCustomerAlreadyExistsException");
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("message","Customer data already exists in database");
+		return new ResponseEntity<Object>(null,headers,HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(CompanyNotFoundException.class)
+	public ResponseEntity<Object> handleCompanyNotFoundException(){
+		
+		LOG.error("handleCompanyNotFoundException");
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message", "Company data not found");
+		return new ResponseEntity<Object>(null,headers,HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(CompanyAlreadyExistsException.class)
+	public ResponseEntity<Object> handleCompanyAlreadyExistsException(){
+
+		LOG.error("handleCompanyAlreadyExistsException");
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message","Company already exists");
+		return new ResponseEntity<Object>(null,headers,HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(DealAlreadyExistsException.class)
+	public ResponseEntity<Object> handleDealAlreadyExistsException(){
+		LOG.error("handleDealAlreadyExistsException");
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message", "Dealer already exists");
+		return new ResponseEntity<Object>(null,headers,HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(DealerNotFoundException.class)
+	public ResponseEntity<Object> handleDealerNotFoundException(){
+		LOG.error("handleDealerNotFoundException");
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message", "Dealer not found ");
 		return new ResponseEntity<Object>(null,headers,HttpStatus.NOT_FOUND);
 	}
 
