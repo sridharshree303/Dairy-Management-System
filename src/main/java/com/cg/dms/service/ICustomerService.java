@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.dms.entities.Customer;
+import com.cg.dms.exception.CustomerAlreadyExistsException;
 import com.cg.dms.exception.CustomerNotFoundException;
 import com.cg.dms.repository.ICustomerRepository;
 
@@ -27,33 +28,52 @@ public class ICustomerService {
 	}
 
 //	public Customer insertCustomer(Customer customer);
-	public Customer insertCustomer(Customer customer) {
-		LOG.info("add Customer Service");
-		return icustomerRepository.save(customer);
+	public Customer insertCustomer(Customer customer) throws CustomerNotFoundException {
+		LOG.info("add New Customer Service");
+		Optional<Customer> custom = icustomerRepository.findById(customer.getCustomerId());
+		if(custom.isPresent())
+			throw new CustomerAlreadyExistsException(customer.getCustomerId()+"is always present in Customer data");
+		else
+			return icustomerRepository.save(customer);		
 	}
 
 	// public Customer updateCustomer(Customer customer) throws
 	// CustomerNotFoundException;
 	public Customer updateCustomer(Customer customer) {
 		LOG.info("Update customer Service");
-		return icustomerRepository.save(customer);
+		if (icustomerRepository.existsById(customer.getCustomerId()))
+			return icustomerRepository.save(customer);
+		System.out.println(customer.getCustomerId() + "does not found from Database source");
+		return null;
 	}
 
 	// public Customer deleteCustomer(Customer customer) throws
 	// CustomerNotFoundException;
-	public Customer deleteCustomer(int customerId) {
+	public Customer deleteCustomer(int customerId) throws CustomerNotFoundException {
 		LOG.info("Delete Customer By CustomerId");
 		Optional<Customer> customId = icustomerRepository.findById(customerId);
-		icustomerRepository.deleteById(customerId);
-		return customId.get();
+		if (customId.isPresent()) {
+			icustomerRepository.deleteById(customerId);
+			return customId.get();
+		} else {
+			LOG.info("Customer Data not Found");
+			throw new CustomerNotFoundException(customerId + " --> customer Id not found ");
+		}
 	}
 
 	// public Customer viewCustomer(int customerId) throws
 	// CustomerNotFoundException;
-	public Customer viewCustomer(int customerId) {
+	public Customer viewCustomer(int customerId) throws CustomerNotFoundException {
 		LOG.info("View customer by customerId");
 		Optional<Customer> customId = icustomerRepository.findById(customerId);
-		return customId.get();
+		if (customId.isPresent()) {
+			LOG.info("Customer Data Found");
+			return customId.get();
+		} else {
+			LOG.info("Customer Data not Found");
+			throw new CustomerNotFoundException(customerId + " --> customer Id not found ");
+		}
+
 	}
 
 //	public Customer validateCustomer(String username, String password) throws CustomerNotFoundException;

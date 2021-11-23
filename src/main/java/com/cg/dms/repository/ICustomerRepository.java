@@ -1,5 +1,7 @@
 package com.cg.dms.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,7 +10,8 @@ import com.cg.dms.exception.CustomerNotFoundException;
 
 @Repository
 public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
-	
+
+		
 //	public Customer insertCustomer(Customer customer);
 //
 //	public Customer updateCustomer(Customer customer) throws CustomerNotFoundException;
