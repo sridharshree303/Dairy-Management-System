@@ -17,4 +17,6 @@ public interface IFarmerRepository extends JpaRepository<Farmer, Integer> {
 //	public List<Farmer> getAllFarmer();
 //	public List<Farmer> getFarmer(int dealerId);
 //	public Company getCompany();
+	
+	
 }

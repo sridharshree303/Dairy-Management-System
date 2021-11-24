@@ -3,6 +3,7 @@ package com.cg.dms.entities;
 import javax.persistence.*;
 
 @Entity 
+@Table(name="company_table")
 public class Company {
 
 	@Id

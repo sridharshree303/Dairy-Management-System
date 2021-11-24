@@ -28,12 +28,13 @@ public class ICustomerService {
 	}
 
 //	public Customer insertCustomer(Customer customer);
-	public Customer insertCustomer(Customer customer) throws CustomerNotFoundException {
+	public Customer insertCustomer(Customer customer) throws CustomerAlreadyExistsException {
 		LOG.info("add New Customer Service");
 		Optional<Customer> custom = icustomerRepository.findById(customer.getCustomerId());
 		if(custom.isPresent())
 			throw new CustomerAlreadyExistsException(customer.getCustomerId()+"is already present in Customer data");
 		else
+			LOG.info("added new Customer");
 			return icustomerRepository.save(customer);		
 	}
 
@@ -41,10 +42,13 @@ public class ICustomerService {
 	// CustomerNotFoundException;
 	public Customer updateCustomer(Customer customer) {
 		LOG.info("Update customer Service");
-		if (icustomerRepository.existsById(customer.getCustomerId()))
+		if (icustomerRepository.existsById(customer.getCustomerId())) {
+			LOG.info("Update customer service");
 			return icustomerRepository.save(customer);
+		}else {
 		System.out.println(customer.getCustomerId() + "does not found from Database source");
 		return null;
+		}
 	}
 
 	// public Customer deleteCustomer(Customer customer) throws
