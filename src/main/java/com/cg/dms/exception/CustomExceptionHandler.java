@@ -74,6 +74,14 @@ class CustomExceptionHandler {
 		return new ResponseEntity<Object>(null,headers,HttpStatus.NOT_FOUND);
 	}
 	
+	@ExceptionHandler(PaymentNotFoundException.class)
+	public ResponseEntity<Object> handlePaymentNotFoundException(){
+		LOG.error(" handlePaymentNotFoundException");
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message", "Payment Not Found");
+		return new ResponseEntity<Object>(null,headers,HttpStatus.NOT_FOUND);
+	}
+	
 	
 
 }

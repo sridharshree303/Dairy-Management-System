@@ -14,11 +14,22 @@ public class DealerPayment extends Payment {
 	 */
 	private static final long serialVersionUID = -5903323702835773942L;
 	
-	//private int sid;
 
 	@ManyToOne
 	@JoinColumn(name = "id")
 	private Company company;
+	
+	@ManyToOne
+	@JoinColumn(name="dealerId")
+	private Dealer dealer;
+
+	public Dealer getDealer() {
+		return dealer;
+	}
+
+	public void setDealer(Dealer dealer) {
+		this.dealer = dealer;
+	}
 
 	public Company getCompany() {
 		return company;
@@ -27,14 +38,6 @@ public class DealerPayment extends Payment {
 	public void setCompany(Company company) {
 		this.company = company;
 	}
-	
-//	public int getSid() {
-//		return sid;
-//	}
-//
-//	public void setSid(int sid) {
-//		this.sid = sid;
-//	}
-	
+		
 	
 }
