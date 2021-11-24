@@ -1,6 +1,5 @@
 package com.cg.dms.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -8,12 +7,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cg.dms.controller.PaymentController;
+import com.cg.dms.entities.CompanyPayment;
 import com.cg.dms.entities.DealerPayment;
 import com.cg.dms.entities.Payment;
-import com.cg.dms.exception.CustomerNotFoundException;
 import com.cg.dms.exception.PaymentAlreadyFoundException;
-import com.cg.dms.exception.PaymentNotFoundException;
+import com.cg.dms.repository.ICompanyPaymentRepository;
 import com.cg.dms.repository.IDealerPaymentRepository;
 import com.cg.dms.repository.IPaymentRepository;
 
@@ -24,6 +22,8 @@ public class PaymentService {
 	private IPaymentRepository ipaymentrepository;
 	@Autowired
 	private IDealerPaymentRepository idealerpaymentrepo;
+	@Autowired
+	private ICompanyPaymentRepository icompanypaymentrepository;
 	
 //	public Payment insertDealerToComapnyPayment(Payment payment)throws PaymentNotFoundException;
 	public Payment insertDealerToComapnyPayment(DealerPayment payment) throws PaymentAlreadyFoundException{
@@ -38,15 +38,30 @@ public class PaymentService {
 		
 	}
 	
+	public Payment insertCompanyToFarmerPayment(CompanyPayment payment) throws PaymentAlreadyFoundException{
+	
+		LOG.info("Insert Comapany To Farmer Payment");
+		Optional<CompanyPayment> company = icompanypaymentrepository.findById(payment.getPaymentId());
+		if(company.isPresent()) {
+			throw new PaymentAlreadyFoundException(payment.getPaymentId());
+		}else {
+			LOG.info("Insert company into farmer payment");
+			return icompanypaymentrepository.save(payment);
+		}
+		
+		return null;
+	}
+	
+
 	
 	
 	
 	
 	
 	
-//	public Payment insertCompanyToFarmerPayment(Payment payment)throws PaymentNotFoundException;
-//	public Payment insertDealerToComapnyPayment(Payment payment)throws PaymentNotFoundException;
-//	public Payment insertCustomerToDelearPayment(Payment payment)throws PaymentNotFoundException;
+//	public Payment insertCompanyToFarmerPayment(Payment payment)throws PaymentNotFoundException;   --- done
+//	public Payment insertDealerToComapnyPayment(Payment payment)throws PaymentNotFoundException;   --- 
+//	public Payment insertCustomerToDelearPayment(Payment payment)throws PaymentNotFoundException;  ---  
 //	
 //	
 //	public List<Payment> viewAllpaymentsCustomer(int customerId) throws CustomerNotFoundException;

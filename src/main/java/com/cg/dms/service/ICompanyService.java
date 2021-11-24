@@ -77,11 +77,7 @@ public class ICompanyService {
 		return iCompanyRepository.findAll();
 	}
 	
-	
-
 }
-
-
 
 //public List<Farmer> getAllFormers();
 //public Farmer getFormer(int farmerId);
