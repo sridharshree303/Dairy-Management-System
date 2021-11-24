@@ -1,6 +1,5 @@
 package com.cg.dms.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -13,7 +12,6 @@ import com.cg.dms.entities.CustomerPayment;
 import com.cg.dms.entities.DealerPayment;
 import com.cg.dms.entities.Payment;
 import com.cg.dms.exception.PaymentAlreadyFoundException;
-import com.cg.dms.exception.PaymentNotFoundException;
 import com.cg.dms.repository.ICompanyPaymentRepository;
 import com.cg.dms.repository.ICustomerPaymentRepository;
 import com.cg.dms.repository.IDealerPaymentRepository;

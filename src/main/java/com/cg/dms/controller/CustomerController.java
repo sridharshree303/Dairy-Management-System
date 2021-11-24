@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.dms.entities.Customer;
 import com.cg.dms.exception.CustomerNotFoundException;
-import com.cg.dms.service.ICustomerService;
+import com.cg.dms.service.CustomerService;
 
 @RestController
 public class CustomerController {
@@ -26,13 +26,13 @@ public class CustomerController {
 	private static final Logger LOG = LoggerFactory.getLogger(CustomerController.class);
 	
 	@Autowired
-	private ICustomerService customerservice;
+	private CustomerService customerservice;
 	
 	//https://localhost:8082/vwalcusts
 	@GetMapping("/viewallcustoms")
-	public List<Customer> viewCustomers(){
+	public List<Customer> viewCustomers() throws CustomerNotFoundException{
 		LOG.info("VIEW_ALL_CUSTOMERS_CONTROLLER");
-		List<Customer> list = customerservice.viewAllCustomers();
+		List<Customer> list = customerservice.viewCustomers();
 		return list;
 	}
 	
