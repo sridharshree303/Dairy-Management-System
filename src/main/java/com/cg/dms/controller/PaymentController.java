@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.dms.entities.CompanyPayment;
 import com.cg.dms.entities.DealerPayment;
 import com.cg.dms.entities.Payment;
 import com.cg.dms.service.PaymentService;
@@ -31,6 +32,15 @@ public class PaymentController {
 		ResponseEntity<Payment> response = new ResponseEntity<Payment>(pay,headers,HttpStatus.OK);
 		return response;
 	}
-
+	
+	@PostMapping("/setcmpytofarm")
+	public ResponseEntity<Payment> insertCompanyToFarmer(@RequestBody CompanyPayment payment){
+		LOG.info("insert company to farmer");
+		Payment pay = paymentservice.insertCompanyToFarmerPayment(payment);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message", "New  is added");
+		ResponseEntity<Payment> response = new ResponseEntity<Payment>(pay,headers,HttpStatus.OK);
+		return response;
+	}
 
 }

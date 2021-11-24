@@ -24,43 +24,39 @@ public class PaymentService {
 	private IDealerPaymentRepository idealerpaymentrepo;
 	@Autowired
 	private ICompanyPaymentRepository icompanypaymentrepository;
-	
+
 //	public Payment insertDealerToComapnyPayment(Payment payment)throws PaymentNotFoundException;
-	public Payment insertDealerToComapnyPayment(DealerPayment payment) throws PaymentAlreadyFoundException{
+	public Payment insertDealerToComapnyPayment(DealerPayment payment) throws PaymentAlreadyFoundException {
 		LOG.info("Insert Dealer to Company Payment");
 		Optional<DealerPayment> dealer = idealerpaymentrepo.findById(payment.getPaymentId());
-		if(dealer.isPresent()) {
-			throw new PaymentAlreadyFoundException(payment.getPaymentId()+"");
-		}else {
+		if (dealer.isPresent()) {
+			throw new PaymentAlreadyFoundException(payment.getPaymentId() + " Payment Id already found");
+		} else {
 			LOG.info("Insert dealer into company payment");
 			return ipaymentrepository.save(payment);
 		}
-		
+
 	}
-	
-	public Payment insertCompanyToFarmerPayment(CompanyPayment payment) throws PaymentAlreadyFoundException{
-	
+
+	public Payment insertCompanyToFarmerPayment(CompanyPayment payment) throws PaymentAlreadyFoundException {
+
 		LOG.info("Insert Comapany To Farmer Payment");
 		Optional<CompanyPayment> company = icompanypaymentrepository.findById(payment.getPaymentId());
-		if(company.isPresent()) {
-			throw new PaymentAlreadyFoundException(payment.getPaymentId());
-		}else {
+		if (company.isPresent()) {
+			throw new PaymentAlreadyFoundException(payment.getPaymentId() + "PaymentId already found ");
+		} else {
 			LOG.info("Insert company into farmer payment");
 			return icompanypaymentrepository.save(payment);
 		}
-		
-		return null;
+
 	}
-	
 
 	
 	
 	
 	
-	
-	
 //	public Payment insertCompanyToFarmerPayment(Payment payment)throws PaymentNotFoundException;   --- done
-//	public Payment insertDealerToComapnyPayment(Payment payment)throws PaymentNotFoundException;   --- 
+//	public Payment insertDealerToComapnyPayment(Payment payment)throws PaymentNotFoundException;   --- done
 //	public Payment insertCustomerToDelearPayment(Payment payment)throws PaymentNotFoundException;  ---  
 //	
 //	
