@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.dms.entities.CompanyPayment;
+import com.cg.dms.entities.CustomerPayment;
 import com.cg.dms.entities.DealerPayment;
 import com.cg.dms.entities.Payment;
 import com.cg.dms.service.PaymentService;
@@ -23,22 +24,32 @@ public class PaymentController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(PaymentController.class);
 	
-	@PostMapping("/setdealertocmpy")
+	@PostMapping("/set_dealer_tocmpy")
 	public ResponseEntity<Payment> insertDealerToCompany(@RequestBody DealerPayment payment){
 		LOG.info("insert Dealer to company");
 		Payment pay = paymentservice.insertDealerToComapnyPayment(payment);
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("message", "New dealer is added");
+		headers.add("message", "New dealer Payment is added");
 		ResponseEntity<Payment> response = new ResponseEntity<Payment>(pay,headers,HttpStatus.OK);
 		return response;
 	}
 	
-	@PostMapping("/setcmpytofarm")
+	@PostMapping("/set_cmpy_tofarm")
 	public ResponseEntity<Payment> insertCompanyToFarmer(@RequestBody CompanyPayment payment){
 		LOG.info("insert company to farmer");
 		Payment pay = paymentservice.insertCompanyToFarmerPayment(payment);
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("message", "New  is added");
+		headers.add("message", "New Farmer payment is added");
+		ResponseEntity<Payment> response = new ResponseEntity<Payment>(pay,headers,HttpStatus.OK);
+		return response;
+	}
+	
+	@PostMapping("/set_custom_to_dealer")
+	public ResponseEntity<Payment> insertCustomerToDealer(@RequestBody CustomerPayment payment){
+		LOG.info("insert customer to Dealer");
+		Payment pay = paymentservice.insertCustomerToDelearPayment(payment);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message", "New Customer Payment is added");
 		ResponseEntity<Payment> response = new ResponseEntity<Payment>(pay,headers,HttpStatus.OK);
 		return response;
 	}
