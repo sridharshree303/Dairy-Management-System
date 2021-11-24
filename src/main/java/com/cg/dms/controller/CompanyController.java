@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.dms.entities.Company;
 import com.cg.dms.exception.CompanyNotFoundException;
-import com.cg.dms.service.ICompanyService;
+import com.cg.dms.service.CompanyService;
 
 @RestController
 public class CompanyController {
@@ -26,7 +26,7 @@ public class CompanyController {
 	private static final Logger LOG = LoggerFactory.getLogger(CompanyController.class);
 
 	@Autowired
-	private ICompanyService iCompanyService;
+	private CompanyService iCompanyService;
 
 	@PostMapping("/addcompany")
 	public ResponseEntity<Company> addcompany(@RequestBody Company company) throws CompanyNotFoundException {
@@ -42,7 +42,7 @@ public class CompanyController {
 	public ResponseEntity<Company> deletecompanyById(@PathVariable(name = "companyid") int companyid)
 			throws CompanyNotFoundException {
 		LOG.info("deletecompanybyid");
-		Company company = iCompanyService.deleteCompanyById(companyid);
+		Company company = iCompanyService.deleteCompany(companyid);
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("message", "This company is deleted from the Database");
 		ResponseEntity<Company> response = new ResponseEntity<Company>(company, headers, HttpStatus.OK);

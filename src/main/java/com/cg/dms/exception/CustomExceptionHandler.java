@@ -22,66 +22,72 @@ class CustomExceptionHandler {
 		return new ResponseEntity<Object>(null, headers, HttpStatus.NOT_FOUND);
 
 	}
-	
+
 	@ExceptionHandler(CustomerAlreadyExistsException.class)
-	public ResponseEntity<Object> handleCustomerAlreadyExistsException(){
-		
+	public ResponseEntity<Object> handleCustomerAlreadyExistsException() {
+
 		LOG.error("handleCustomerAlreadyExistsException");
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("message","Customer data already exists in database");
-		return new ResponseEntity<Object>(null,headers,HttpStatus.NOT_FOUND);
+		headers.add("message", "Customer data already exists in database");
+		return new ResponseEntity<Object>(null, headers, HttpStatus.NOT_FOUND);
 	}
-	
+
 	@ExceptionHandler(CompanyNotFoundException.class)
-	public ResponseEntity<Object> handleCompanyNotFoundException(){
-		
+	public ResponseEntity<Object> handleCompanyNotFoundException() {
+
 		LOG.error("handleCompanyNotFoundException");
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("message", "Company data not found");
-		return new ResponseEntity<Object>(null,headers,HttpStatus.NOT_FOUND);
+		return new ResponseEntity<Object>(null, headers, HttpStatus.NOT_FOUND);
 	}
-	
+
 	@ExceptionHandler(CompanyAlreadyExistsException.class)
-	public ResponseEntity<Object> handleCompanyAlreadyExistsException(){
+	public ResponseEntity<Object> handleCompanyAlreadyExistsException() {
 
 		LOG.error("handleCompanyAlreadyExistsException");
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("message","Company already exists");
-		return new ResponseEntity<Object>(null,headers,HttpStatus.NOT_FOUND);
+		headers.add("message", "Company already exists");
+		return new ResponseEntity<Object>(null, headers, HttpStatus.NOT_FOUND);
 	}
-	
+
 	@ExceptionHandler(DealAlreadyExistsException.class)
-	public ResponseEntity<Object> handleDealAlreadyExistsException(){
+	public ResponseEntity<Object> handleDealAlreadyExistsException() {
 		LOG.error("handleDealAlreadyExistsException");
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("message", "Dealer already exists");
-		return new ResponseEntity<Object>(null,headers,HttpStatus.NOT_FOUND);
+		return new ResponseEntity<Object>(null, headers, HttpStatus.NOT_FOUND);
 	}
-	
+
 	@ExceptionHandler(DealerNotFoundException.class)
-	public ResponseEntity<Object> handleDealerNotFoundException(){
+	public ResponseEntity<Object> handleDealerNotFoundException() {
 		LOG.error("handleDealerNotFoundException");
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("message", "Dealer not found ");
-		return new ResponseEntity<Object>(null,headers,HttpStatus.NOT_FOUND);
+		return new ResponseEntity<Object>(null, headers, HttpStatus.NOT_FOUND);
 	}
-	
+
 	@ExceptionHandler(PaymentAlreadyFoundException.class)
-	public ResponseEntity<Object> handlePaymentAlreadyFoundException(){
+	public ResponseEntity<Object> handlePaymentAlreadyFoundException() {
 		LOG.error("handlePaymentAlreadyFoundException");
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("message", "PaymentId already found");
-		return new ResponseEntity<Object>(null,headers,HttpStatus.NOT_FOUND);
+		return new ResponseEntity<Object>(null, headers, HttpStatus.NOT_FOUND);
 	}
-	
+
 	@ExceptionHandler(PaymentNotFoundException.class)
-	public ResponseEntity<Object> handlePaymentNotFoundException(){
+	public ResponseEntity<Object> handlePaymentNotFoundException() {
 		LOG.error(" handlePaymentNotFoundException");
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("message", "Payment Not Found");
-		return new ResponseEntity<Object>(null,headers,HttpStatus.NOT_FOUND);
+		return new ResponseEntity<Object>(null, headers, HttpStatus.NOT_FOUND);
 	}
-	
-	
+
+	@ExceptionHandler(FarmerAlreadyExistsException.class)
+	public ResponseEntity<Object> FarmerAlreadyExists() {
+		LOG.error("FarmerAlreadyExistsException");
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message", "This Farmer is NOT available in the database.");
+		return new ResponseEntity<Object>(null, headers, HttpStatus.NOT_FOUND);
+	}
 
 }
