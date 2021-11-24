@@ -23,9 +23,9 @@ public interface IDelearRepository extends JpaRepository<Dealer, Integer> {
 //
 //	public List<Customer> getAllCustomers();
 //
-//	public List<Customer> getCustomer(int customerId);
+//	public List<Customer> getCustomer(int customerId);  // 
 //
 //	public List<Company> getAllCompanys();
 //
-//	public Company getCompany(int comapnyId);
+//	public Company getCompany(int comapnyId);  // in company getid
 }

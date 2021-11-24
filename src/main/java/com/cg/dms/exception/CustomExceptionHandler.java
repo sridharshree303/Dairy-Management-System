@@ -65,5 +65,23 @@ class CustomExceptionHandler {
 		headers.add("message", "Dealer not found ");
 		return new ResponseEntity<Object>(null,headers,HttpStatus.NOT_FOUND);
 	}
+	
+	@ExceptionHandler(PaymentAlreadyFoundException.class)
+	public ResponseEntity<Object> handlePaymentAlreadyFoundException(){
+		LOG.error("handlePaymentAlreadyFoundException");
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message", "PaymentId already found");
+		return new ResponseEntity<Object>(null,headers,HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(PaymentNotFoundException.class)
+	public ResponseEntity<Object> handlePaymentNotFoundException(){
+		LOG.error(" handlePaymentNotFoundException");
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message", "Payment Not Found");
+		return new ResponseEntity<Object>(null,headers,HttpStatus.NOT_FOUND);
+	}
+	
+	
 
 }
