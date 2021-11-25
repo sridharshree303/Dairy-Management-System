@@ -9,7 +9,7 @@ import com.cg.dms.exception.FarmerNotFoundException;
 
 public interface IfarmerService {
 	
-	public Farmer validateFarmer(String username, String password) throws Exception;
+//	public Farmer validateFarmer(String username, String password) throws Exception;
 
 	public Farmer addFarmer(Farmer user) throws FarmerAlreadyExistsException;
 
@@ -17,7 +17,7 @@ public interface IfarmerService {
 
 	public List<Farmer> getAllFarmer();
 
-//	public Farmer getFarmer(int dealerId)  ;
+	public Farmer getFarmer(int dealerId) throws FarmerNotFoundException  ;
 
 
 }

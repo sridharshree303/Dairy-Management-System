@@ -1,10 +1,15 @@
 package com.cg.dms.exception;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -82,12 +87,59 @@ class CustomExceptionHandler {
 		return new ResponseEntity<Object>(null, headers, HttpStatus.NOT_FOUND);
 	}
 
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public ResponseEntity<Object> handleMethodNotFoundException(MethodArgumentNotValidException e) {
+//		LOG.error(" handlePaymentNotFoundException");
+//		HttpHeaders headers = new HttpHeaders();
+//		headers.add("message", "Method ");
+//		return new ResponseEntity<Object>(null, headers, HttpStatus.NOT_FOUND);
+		String errMsg=e.getAllErrors().stream().map(error->error.getDefaultMessage()).collect(Collectors.joining(","));
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message", errMsg);
+		return new ResponseEntity<Object>(null, headers, HttpStatus.BAD_REQUEST);
+		
+		//		List<ObjectError> list = e.getAllErrors();
+//		String errMsg = "";
+//		for (ObjectError objectError : list) {
+//			errMsg = errMsg.concat(objectError.getDefaultMessage() + ",");
+//			// errMsg=errMsg.concat(",");
+//		}
+//		ErrorMessage error = new ErrorMessage();
+//		error.setErrorCode(404);
+//		error.setErrorCodeDescription("Bad Request");
+//		error.setErrorMessage(errMsg);
+	}
+
 	@ExceptionHandler(FarmerAlreadyExistsException.class)
-	public ResponseEntity<Object> FarmerAlreadyExists() {
+	public ResponseEntity<Object> FarmerAlreadyExistsException() {
 		LOG.error("FarmerAlreadyExistsException");
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("message", "This Farmer is NOT available in the database.");
+		headers.add("message", "This Farmer is already exists in the database.");
 		return new ResponseEntity<Object>(null, headers, HttpStatus.NOT_FOUND);
+	}
+
+	@ExceptionHandler(FarmerNotFoundException.class)
+	public ResponseEntity<Object> handleFarmerNotFoundException() {
+		LOG.error("handleFarmerNotFoundException");
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message", "This Farmer is not Found ");
+		return new ResponseEntity<Object>(null, headers, HttpStatus.NOT_FOUND);
+	}
+
+	@ExceptionHandler(AppUserNotFoundException.class)
+	public ResponseEntity<Object> handleAppUserNotFoundException() {
+		LOG.error("AppUserNotFoundException");
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message", "This Farmer is not Found");
+		return new ResponseEntity<Object>(null, headers, HttpStatus.NOT_FOUND);
+	}
+
+	@ExceptionHandler(AppUserAlreadyExistsException.class)
+	public ResponseEntity<Object> handleAppUserAlreadyExistsException() {
+		LOG.error("handleAppUserAlreadyExistsException");
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("", null);
+		return null;
 	}
 
 }

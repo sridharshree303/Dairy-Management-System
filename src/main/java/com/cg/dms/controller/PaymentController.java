@@ -1,5 +1,7 @@
 package com.cg.dms.controller;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,7 @@ public class PaymentController {
 	private static final Logger LOG = LoggerFactory.getLogger(PaymentController.class);
 	
 	@PostMapping("/set_dealer_tocmpy")
-	public ResponseEntity<Payment> insertDealerToCompany(@RequestBody DealerPayment payment){
+	public ResponseEntity<Payment> insertDealerToCompanyPayment(@Valid @RequestBody DealerPayment payment){
 		LOG.info("insert Dealer to company");
 		Payment pay = paymentservice.insertDealerToComapnyPayment(payment);
 		HttpHeaders headers = new HttpHeaders();
@@ -35,7 +37,7 @@ public class PaymentController {
 	}
 	
 	@PostMapping("/set_cmpy_tofarm")
-	public ResponseEntity<Payment> insertCompanyToFarmer(@RequestBody CompanyPayment payment){
+	public ResponseEntity<Payment> insertCompanyToFarmerPayment(@Valid @RequestBody CompanyPayment payment){
 		LOG.info("insert company to farmer");
 		Payment pay = paymentservice.insertCompanyToFarmerPayment(payment);
 		HttpHeaders headers = new HttpHeaders();
@@ -45,7 +47,7 @@ public class PaymentController {
 	}
 	
 	@PostMapping("/set_custom_to_dealer")
-	public ResponseEntity<Payment> insertCustomerToDealer(@RequestBody CustomerPayment payment){
+	public ResponseEntity<Payment> insertCustomerToDealer(@Valid @RequestBody CustomerPayment payment){
 		LOG.info("insert customer to Dealer");
 		Payment pay = paymentservice.insertCustomerToDelearPayment(payment);
 		HttpHeaders headers = new HttpHeaders();

@@ -49,27 +49,15 @@ public class FarmerController {
 		ResponseEntity<Farmer> response = new ResponseEntity<Farmer>(former, headers, HttpStatus.OK);
 		return response;
 	}
+
+	@GetMapping("/getfarmer/{farmerId}")
+	public ResponseEntity<Farmer> getFarmerbyId(@PathVariable(name="farmerId") int farmerId) throws FarmerNotFoundException{
+		LOG.info("getFarmer");
+		Farmer farmer = iFarmerService.getFarmer(farmerId);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message", "Farmer Id is Found ");
+		ResponseEntity<Farmer> response = new ResponseEntity<Farmer>(farmer, headers, HttpStatus.OK);
+		return response;
+	}
 	
-//	@GetMapping("/getFarmer/{dealerId}")
-//	public ResponseEntity<Farmer> getFarmer(@PathVariable(name = "farmerId") int farmerId) throws DealerNotFoundException {
-//		LOG.info("getFarmer");
-//		Farmer farmer = iFarmerService.getFarmer(farmerId);
-//		HttpHeaders headers = new HttpHeaders();
-//		headers.add("message", "This Farmer is available in the database.");
-//		LOG.info(headers.toString());
-//		ResponseEntity<Farmer> response = new ResponseEntity<Farmer>(farmer, headers, HttpStatus.OK);
-//		return response;
-//	}
-	
-//	@GetMapping("/getFarmer/{dealerId}")
-//	public ResponseEntity<Farmer> getFarmer(@PathVariable(name = "farmerId") int dealerId) throws DealerNotFoundException {
-//		LOG.info("getFarmer");
-//		Farmer farmer = iFarmerService.getFarmer(dealerId);
-//		LOG.info(farmer.toString());
-//		HttpHeaders headers = new HttpHeaders();
-//		headers.add("message", "This Farmer is available in the database.");
-//		LOG.info(headers.toString());
-//		ResponseEntity<Farmer> response = new ResponseEntity<Farmer>(farmer, headers, HttpStatus.OK);
-//		return response;
-//	}
 }
