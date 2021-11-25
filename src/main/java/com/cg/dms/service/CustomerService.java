@@ -40,14 +40,14 @@ public class CustomerService implements ICustomerService{
 
 	// public Customer updateCustomer(Customer customer) throws
 	// CustomerNotFoundException;
-	public Customer updateCustomer(Customer customer) {
+	public Customer updateCustomer(Customer customer) throws CustomerNotFoundException {
 		LOG.info("Update customer Service");
 		if (icustomerRepository.existsById(customer.getCustomerId())) {
 			LOG.info("Update customer service");
 			return icustomerRepository.save(customer);
 		}else {
-		System.out.println(customer.getCustomerId() + "does not found from Database source");
-		return null;
+		LOG.info(customer.getCustomerId()+" Customer data is Not updated");
+		throw new CustomerNotFoundException("Customer data is Not updated");
 		}
 	}
 

@@ -49,7 +49,7 @@ public class CustomerController {
 	
 	//https://localhost:8082/updtcustom
 	@PutMapping("/updtcustom")
-	public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer) {
+	public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer) throws CustomerNotFoundException {
 		LOG.info("UPDATE_CUSTOMER_CONTROLLER");
 		Customer custom = customerservice.updateCustomer(customer);
 		HttpHeaders headers = new HttpHeaders();

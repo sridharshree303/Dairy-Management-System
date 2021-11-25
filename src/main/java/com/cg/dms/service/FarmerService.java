@@ -1,6 +1,7 @@
 package com.cg.dms.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.dms.entities.Farmer;
+import com.cg.dms.exception.CustomerNotFoundException;
 import com.cg.dms.exception.FarmerAlreadyExistsException;
 import com.cg.dms.exception.FarmerNotFoundException;
 import com.cg.dms.repository.IFarmerRepository;
@@ -47,23 +49,24 @@ public class FarmerService implements IfarmerService {
 			throw new FarmerNotFoundException(" Farmer Data is not updated");
 		}
 	}
-
-//	public Farmer getFarmer(int dealerId) throws DealerNotFoundException {
-//		LOG.info("getFarmerId");
-//		Optional<Farmer> farmerOpt = iFarmerRepository.findById(dealerId);
-//		if (farmerOpt.isPresent()) {
-//			LOG.info("Farmer is available.");
-//			return farmerOpt.get();
-//		} else {
-//			LOG.info("Farmer is NOT available.");
-//			throw new DealerNotFoundException(dealerId + " this delaer is not found.");
-//		}
-//	}
-
-	@Override
-	public Farmer validateFarmer(String username, String password) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public Farmer getFarmer(int farmerId) throws  FarmerNotFoundException{
+		LOG.info("Get Farmer By Id");
+		Optional<Farmer> farmer = iFarmerRepository.findById(farmerId);
+		if(farmer.isPresent()) {
+			LOG.info("Farmer is found");
+			return farmer.get();
+		}else {
+			LOG.info("Farmer is Not Found");
+			throw new FarmerNotFoundException(farmerId+" --> farmerId is not Found ");
+		}
 	}
+
+
+//	@Override
+//	public Farmer validateFarmer(String username, String password) throws Exception {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 }
