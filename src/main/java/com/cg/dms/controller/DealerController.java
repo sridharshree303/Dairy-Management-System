@@ -59,7 +59,7 @@ public class DealerController {
 	}
 
 	@PutMapping("/dealer/update")
-	public ResponseEntity<Dealer> updateEmp(@Valid @RequestBody Dealer dealer) throws DealerNotFoundException {
+	public ResponseEntity<Dealer> updateDealer(@Valid @RequestBody Dealer dealer) throws DealerNotFoundException {
 		LOG.info("Controller updatedealer");
 		Dealer deal = idealerService.updateDealer(dealer);
 		HttpHeaders headers = new HttpHeaders();

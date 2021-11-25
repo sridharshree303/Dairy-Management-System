@@ -1,7 +1,5 @@
 package com.cg.dms.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -50,7 +48,7 @@ public class CompanyController {
 		ResponseEntity<Company> response = new ResponseEntity<Company>(company, headers, HttpStatus.OK);
 		return response;
 	}
-
+	
 	@PutMapping("/company/update")
 	public ResponseEntity<Company> updatecompany(@Valid @RequestBody Company company) throws CompanyNotFoundException {
 		LOG.info("Controller company");

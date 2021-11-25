@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.dms.entities.Farmer;
+import com.cg.dms.exception.CompanyNotFoundException;
 import com.cg.dms.exception.CustomerNotFoundException;
 import com.cg.dms.exception.FarmerAlreadyExistsException;
 import com.cg.dms.exception.FarmerNotFoundException;
+import com.cg.dms.repository.ICompanyRepository;
 import com.cg.dms.repository.IFarmerRepository;
 
 @Service
@@ -20,6 +22,9 @@ public class FarmerService implements IfarmerService {
 	private static final Logger LOG = LoggerFactory.getLogger(FarmerService.class);
 	@Autowired
 	private IFarmerRepository iFarmerRepository;
+	
+	@Autowired
+	private ICompanyRepository iCompanyRepository;
 
 	public List<Farmer> getAllFarmer() {
 		LOG.info("Get_All_Formers");
@@ -61,6 +66,19 @@ public class FarmerService implements IfarmerService {
 			throw new FarmerNotFoundException(farmerId+" --> farmerId is not Found ");
 		}
 	}
+	
+
+	public String sellMilk(int companyid) throws CompanyNotFoundException{
+		LOG.info("Sell Milk");
+		if(iCompanyRepository.existsById(companyid)) {
+			return "Milk sold successfully";
+		}
+		else {
+			LOG.info("Company Not Found");
+		throw new  CompanyNotFoundException();
+		}
+	}
+
 
 
 
