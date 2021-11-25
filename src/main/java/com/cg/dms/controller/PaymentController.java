@@ -26,7 +26,7 @@ public class PaymentController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(PaymentController.class);
 	
-	@PostMapping("/set_dealer_tocmpy")
+	@PostMapping("/payment/insert/dealer")
 	public ResponseEntity<Payment> insertDealerToCompanyPayment(@Valid @RequestBody DealerPayment payment){
 		LOG.info("insert Dealer to company");
 		Payment pay = paymentservice.insertDealerToComapnyPayment(payment);
@@ -36,7 +36,7 @@ public class PaymentController {
 		return response;
 	}
 	
-	@PostMapping("/set_cmpy_tofarm")
+	@PostMapping("/payment/insert/company")
 	public ResponseEntity<Payment> insertCompanyToFarmerPayment(@Valid @RequestBody CompanyPayment payment){
 		LOG.info("insert company to farmer");
 		Payment pay = paymentservice.insertCompanyToFarmerPayment(payment);
@@ -46,7 +46,7 @@ public class PaymentController {
 		return response;
 	}
 	
-	@PostMapping("/set_custom_to_dealer")
+	@PostMapping("/payment/insert/customer")
 	public ResponseEntity<Payment> insertCustomerToDealer(@Valid @RequestBody CustomerPayment payment){
 		LOG.info("insert customer to Dealer");
 		Payment pay = paymentservice.insertCustomerToDelearPayment(payment);
@@ -55,25 +55,7 @@ public class PaymentController {
 		ResponseEntity<Payment> response = new ResponseEntity<Payment>(pay,headers,HttpStatus.OK);
 		return response;
 	}
-	
-//	@GetMapping("/viewpaybyId/{customerId}")
-//	public ResponseEntity<List<Payment>> viewPaymentsByCustomId(@PathVariable(name="customerId")int customerId )
-//	throws PaymentNotFoundException{
-//		LOG.info("viewPaymentsByCustomId");
-//		List<Payment> pay = paymentservice.viewAllpaymentsCustomer(customerId);
-//		HttpHeaders headers = new HttpHeaders();
-//		headers.add("message", "Customer Payments Found by This Id");
-//		ResponseEntity<List<Payment>> response = new ResponseEntity<List<Payment>>(pay,headers,HttpStatus.OK);
-//		return response;
-//	}
-
+		
 }
-
-
-
-
-
-
-
 
 

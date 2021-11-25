@@ -30,12 +30,12 @@ public class CompanyService implements ICompanyService {
 	private IDelearRepository iDealerRepository;
 
 	// public Company insertCompany(Company company);
-	public Company insertCompany(Company company) throws CustomerAlreadyExistsException {
+	public Company insertCompany(Company company) throws CustomerAlreadyExistsException {  
 		LOG.info("Service addCompany");
-		if (iCompanyRepository.existsById(company.getId())) {
+		if (iCompanyRepository.existsById(company.getId())) {    // if true 
 			LOG.info("Company Data is already exists");
 			throw new CustomerAlreadyExistsException(company.getId() + "Company already exists");
-		} else {
+		} else {                                 // if false
 			LOG.info("New Company is Added");
 			return iCompanyRepository.save(company);
 		}
@@ -100,24 +100,3 @@ public class CompanyService implements ICompanyService {
 
 }
 
-
-
-
-
-
-
-// ---< Scrap >
-
-//public Company deleteCompany(Company company) ;
-//	public Company deleteCompanyById(Company company) throws CompanyNotFoundException {
-//		LOG.info("Service deleteCompanyById");
-//
-//		if (iCompanyRepository.existsById(company.getId())) {
-//			LOG.info("Company is Available");
-//			iCompanyRepository.deleteById(company.getId());
-//			return company;
-//		} else {
-//			LOG.info("Company is not available");
-//			throw new CompanyNotFoundException(company.getId() + " -> Company is not found.");
-//		}
-//	}

@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 @RestController
 public class FarmerController {
 
@@ -24,13 +26,13 @@ public class FarmerController {
 	@Autowired
 	private FarmerService iFarmerService;
 
-	@GetMapping("/farmer")
+	@GetMapping("/farmer/all")
 	public List<Farmer> getAllFarmer() {
 		return iFarmerService.getAllFarmer();
 	}
 
 	@PostMapping("/farmer")
-	public ResponseEntity<Farmer> addfarmer(@RequestBody Farmer farmer) throws FarmerAlreadyExistsException {
+	public ResponseEntity<Farmer> addFarmer(@Valid @RequestBody Farmer farmer) throws FarmerAlreadyExistsException {
 		LOG.info("Controller addfarmer");
 		Farmer former = iFarmerService.addFarmer(farmer);
 		HttpHeaders headers = new HttpHeaders();
@@ -41,7 +43,7 @@ public class FarmerController {
 	}
 
 	@PutMapping("/farmer")
-	public ResponseEntity<Farmer> updatefarmer(@RequestBody Farmer farmer) throws FarmerNotFoundException {
+	public ResponseEntity<Farmer> updateFarmer(@Valid @RequestBody Farmer farmer) throws FarmerNotFoundException {
 		LOG.info("Controller updatefarmer");
 		Farmer former = iFarmerService.updateFarmer(farmer);
 		HttpHeaders headers = new HttpHeaders();
@@ -50,8 +52,8 @@ public class FarmerController {
 		return response;
 	}
 
-	@GetMapping("/getfarmer/{farmerId}")
-	public ResponseEntity<Farmer> getFarmerbyId(@PathVariable(name="farmerId") int farmerId) throws FarmerNotFoundException{
+	@GetMapping("/farmer/{farmerId}")
+	public ResponseEntity<Farmer> getFarmerById(@Valid @PathVariable(name="farmerId") int farmerId) throws FarmerNotFoundException{
 		LOG.info("getFarmer");
 		Farmer farmer = iFarmerService.getFarmer(farmerId);
 		HttpHeaders headers = new HttpHeaders();

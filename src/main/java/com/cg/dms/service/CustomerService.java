@@ -81,19 +81,4 @@ public class CustomerService implements ICustomerService{
 
 	}
 
-
-
-
-//	public Customer validateCustomer(String username, String password) throws CustomerNotFoundException;
-	/*
-	 * public Customer validateCustomer(String username,String password) throws
-	 * CustomerNotFoundException { LOG.info("Validating Customer credntials");
-	 * 
-	 * return null; }
-	 */
-
 }
-
-// Extra added
-//
-//

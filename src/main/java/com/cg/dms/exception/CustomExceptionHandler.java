@@ -89,25 +89,11 @@ class CustomExceptionHandler {
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<Object> handleMethodNotFoundException(MethodArgumentNotValidException e) {
-//		LOG.error(" handlePaymentNotFoundException");
-//		HttpHeaders headers = new HttpHeaders();
-//		headers.add("message", "Method ");
-//		return new ResponseEntity<Object>(null, headers, HttpStatus.NOT_FOUND);
+
 		String errMsg=e.getAllErrors().stream().map(error->error.getDefaultMessage()).collect(Collectors.joining(","));
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("message", errMsg);
 		return new ResponseEntity<Object>(null, headers, HttpStatus.BAD_REQUEST);
-		
-		//		List<ObjectError> list = e.getAllErrors();
-//		String errMsg = "";
-//		for (ObjectError objectError : list) {
-//			errMsg = errMsg.concat(objectError.getDefaultMessage() + ",");
-//			// errMsg=errMsg.concat(",");
-//		}
-//		ErrorMessage error = new ErrorMessage();
-//		error.setErrorCode(404);
-//		error.setErrorCodeDescription("Bad Request");
-//		error.setErrorMessage(errMsg);
 	}
 
 	@ExceptionHandler(FarmerAlreadyExistsException.class)
