@@ -29,7 +29,6 @@ public class PaymentService {
 	@Autowired
 	private ICustomerPaymentRepository icustomerpaymentrepository;
 
-
 //	public Payment insertDealerToComapnyPayment(Payment payment)throws PaymentNotFoundException;
 	public Payment insertDealerToComapnyPayment(DealerPayment payment) throws PaymentAlreadyFoundException {
 		LOG.info("Insert Dealer to Company Payment");
@@ -55,48 +54,16 @@ public class PaymentService {
 		}
 
 	}
-	
-	public Payment insertCustomerToDelearPayment(CustomerPayment payment) throws PaymentAlreadyFoundException{
+
+	public Payment insertCustomerToDelearPayment(CustomerPayment payment) throws PaymentAlreadyFoundException {
 		LOG.info("Insert Customer to Dealer ");
-		Optional<CustomerPayment>  customer = icustomerpaymentrepository.findById(payment.getPaymentId());
-		if(customer.isPresent()) {
-			throw new PaymentAlreadyFoundException(payment.getPaymentId()+"PaymentId already found");
-		}else {
+		Optional<CustomerPayment> customer = icustomerpaymentrepository.findById(payment.getPaymentId());
+		if (customer.isPresent()) {
+			throw new PaymentAlreadyFoundException(payment.getPaymentId() + "PaymentId already found");
+		} else {
 			LOG.info("Insert Customer into Dealer ");
 			return icustomerpaymentrepository.save(payment);
 		}
 	}
-	
-//	public List<Payment> viewAllpaymentsCustomer(int customerId) throws PaymentNotFoundException{
-//		LOG.info("View_All_Payment_OF_Id");
-//		List<Payment> pay = icustomerpaymentrepository.fin(customerId);
-//	//	boolean payment = icustomerpaymentrepository.existsById(null);
-////		if(payment) {
-////			LOG.info("Customer payments  found");
-////			return  (List<Payment>) pay.get();
-////		}else {
-////			LOG.info("Customer payments NOT_FOUND");
-////			throw new PaymentNotFoundException(customerId+" --> Id payments not found");
-////
-//		
-//		return List<Payment> ;
-//	}
-	
 
-	
-	
-	
-	
-//	public Payment insertCompanyToFarmerPayment(Payment payment)throws PaymentNotFoundException;   --- done
-//	public Payment insertDealerToComapnyPayment(Payment payment)throws PaymentNotFoundException;   --- done
-//	public Payment insertCustomerToDelearPayment(Payment payment)throws PaymentNotFoundException;  --- done
-//	
-//	
-//	public List<Payment> viewAllpaymentsCustomer(int customerId) throws CustomerNotFoundException;
-//	public List<Payment> viewAllpaymentsDealer(int delearId) throws CustomerNotFoundException;
-//	public List<Payment> viewAllpaymentsCompany(int companyId) throws CustomerNotFoundException;
-//	
-//	public Payment calculateBillForCustomer(int customerId)throws CustomerNotFoundException;
-//	public Payment calculateBillForDealer(int dealerId)throws CustomerNotFoundException;
-//	public Payment calculateBillForCompany(int companyId)throws CustomerNotFoundException;
 }

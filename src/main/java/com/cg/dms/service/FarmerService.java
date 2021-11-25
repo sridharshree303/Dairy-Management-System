@@ -63,10 +63,6 @@ public class FarmerService implements IfarmerService {
 	}
 
 
-//	@Override
-//	public Farmer validateFarmer(String username, String password) throws Exception {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+
 
 }

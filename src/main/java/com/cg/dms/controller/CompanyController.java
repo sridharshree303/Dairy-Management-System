@@ -2,6 +2,8 @@ package com.cg.dms.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +30,8 @@ public class CompanyController {
 	@Autowired
 	private CompanyService iCompanyService;
 
-	@PostMapping("/addcompany")
-	public ResponseEntity<Company> addcompany(@RequestBody Company company) throws CompanyNotFoundException {
+	@PostMapping("/company")
+	public ResponseEntity<Company> addcompany(@Valid @RequestBody Company company) throws CompanyNotFoundException {
 		LOG.info("Controller addCompany");
 		Company comp = iCompanyService.insertCompany(company);
 		HttpHeaders headers = new HttpHeaders();
@@ -38,8 +40,8 @@ public class CompanyController {
 		return response;
 	}
 
-	@DeleteMapping("/deletecompanybyid/{companyid}")
-	public ResponseEntity<Company> deletecompanyById(@PathVariable(name = "companyid") int companyid)
+	@DeleteMapping("/company/{companyid}")
+	public ResponseEntity<Company> deletecompanyById(@Valid @PathVariable(name = "companyid") int companyid)
 			throws CompanyNotFoundException {
 		LOG.info("deletecompanybyid");
 		Company company = iCompanyService.deleteCompany(companyid);
@@ -49,8 +51,8 @@ public class CompanyController {
 		return response;
 	}
 
-	@PutMapping("/updatecompany")
-	public ResponseEntity<Company> updatecompany(@RequestBody Company company) throws CompanyNotFoundException {
+	@PutMapping("/company/update")
+	public ResponseEntity<Company> updatecompany(@Valid @RequestBody Company company) throws CompanyNotFoundException {
 		LOG.info("Controller company");
 		Company comp = iCompanyService.updateCompany(company);
 		HttpHeaders headers = new HttpHeaders();
@@ -59,8 +61,8 @@ public class CompanyController {
 		return response;
 	}
 
-	@GetMapping("/getcompanybyid/{companyId}")
-	public ResponseEntity<Company> getcompanyById(@PathVariable(name = "companyId") int companyId)
+	@GetMapping("/company/get/{companyId}")
+	public ResponseEntity<Company> getcompanyById(@Valid @PathVariable(name = "companyId") int companyId)
 			throws CompanyNotFoundException {
 		LOG.info("getcompanyById");
 		Company company = iCompanyService.getCompanyById(companyId);
@@ -71,11 +73,11 @@ public class CompanyController {
 		return response;
 	}
 	
-	@GetMapping("/getallcompany")
-	public List<Company> getAllCompany() {
-		LOG.info("getAllCompany");
-
-		return iCompanyService.getAllCompany();
-	}
+	/*
+	 * @GetMapping("/company/all") public List<Company> getAllCompany() {
+	 * LOG.info("getAllCompany");
+	 * 
+	 * return iCompanyService.getAllCompany(); }
+	 */
 
 }
