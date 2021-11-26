@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.cg.dms.entities.Farmer;
 import com.cg.dms.exception.CompanyNotFoundException;
-import com.cg.dms.exception.CustomerNotFoundException;
 import com.cg.dms.exception.FarmerAlreadyExistsException;
 import com.cg.dms.exception.FarmerNotFoundException;
 import com.cg.dms.repository.ICompanyRepository;
@@ -67,7 +66,6 @@ public class FarmerService implements IfarmerService {
 		}
 	}
 	
-
 	public String sellMilk(int companyid) throws CompanyNotFoundException{
 		LOG.info("Sell Milk");
 		if(iCompanyRepository.existsById(companyid)) {
