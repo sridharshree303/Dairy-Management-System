@@ -12,9 +12,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
-public class SwaggerConfig {
+public class SwaggerConfig {        // Configuring Swagger Api for checking urls
+	
 	private static final Logger LOG = LoggerFactory.getLogger(SwaggerConfig.class);
-
+	//Docket
 	public Docket api() {
 		LOG.info("SwaggerConfig Docket api");
 		return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any())

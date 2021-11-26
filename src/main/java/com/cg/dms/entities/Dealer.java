@@ -5,13 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+//class is an entity
 @Entity
 public class Dealer extends AbstractUser {
-	@Id
+	@Id // primarykey
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int dealerId;
-	
 
+	// getters and setters
 	public int getDealerId() {
 		return dealerId;
 	}
@@ -22,4 +23,7 @@ public class Dealer extends AbstractUser {
 }
 
 
-///  farmer --   company  -- dealer  -- customer
+
+
+
+///  farmer -->   company  --> dealer  --> customer

@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 
+///mapped superclasshas no separate table 
+//applied to the entities that extends [inheritance]
 @MappedSuperclass
 public class Payment implements Serializable {
 
@@ -17,15 +19,22 @@ public class Payment implements Serializable {
 	 */
 	private static final long serialVersionUID = 8033530529788101286L;
 
+	// Id as primarykey
 	@Id
 	private int paymentId;
+
+	// now() date and time
 	private LocalDateTime dateTime;
+	
 	@NotNull(message = "Bill number shouble be manadatory*")
 	private float bill;
+	
 	@NotNull
 	private int milkUnits;
+	
 	private double unitPrice;
 
+	//getters and setters
 	public int getPaymentId() {
 		return paymentId;
 	}

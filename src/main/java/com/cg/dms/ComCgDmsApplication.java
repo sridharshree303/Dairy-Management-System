@@ -9,8 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ComCgDmsApplication {
 	
+	// To generate messages in LOG format
 	private static final Logger LOG = LoggerFactory.getLogger(ComCgDmsApplication.class);
-
+	//main method
 	public static void main(String[] args) {
 		LOG.info("Start");
 		SpringApplication.run(ComCgDmsApplication.class, args);

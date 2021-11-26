@@ -7,10 +7,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+//class is an entity
+//
 @Entity
 @Table(name="Login_table")
 public class Login {
 
+	//Id as primary
+	//auto generated value
 	@Id
 	@Column(name="login_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,11 +26,14 @@ public class Login {
 	@Column(name="password")
 	private String userPassword;
 
+	
+	//Constructor
 	public Login() {
 		super();
 		
 	}
 
+	//Constructor
 	public Login(int loginId, String userName, String userPassword) {
 		super();
 		this.loginId = loginId;
@@ -34,6 +41,7 @@ public class Login {
 		this.userPassword = userPassword;
 	}
 
+	//getters and setters
 	public int getLoginId() {
 		return loginId;
 	}
@@ -58,6 +66,7 @@ public class Login {
 		this.userPassword = userPassword;
 	}
 
+	//toString method
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
