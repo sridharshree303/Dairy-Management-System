@@ -97,21 +97,21 @@ public class CompanyService implements ICompanyService {
 		return iDealerRepository.findAll();
 	}
 
-//	
-//	public String sellMilk(int dealerId) throws DealerNotFoundException{
-//		LOG.info("sell milk");
-//		if(iDealerRepository.existsById(dealerId)) {
-//			return "Milk sold successfully";
-//		}
-//		else {
-//		throw new  DealerNotFoundException();
-//		}
-//	}
+	
+	public String sellMilk(int dealerId) throws DealerNotFoundException{
+		LOG.info("sell milk");
+		if(iDealerRepository.existsById(dealerId)) {
+			return "Milk sold successfully";
+		}
+		else {
+		throw new  DealerNotFoundException();
+		}
+	}
 	
 	public String buyMilk(int farmerid) throws FarmerNotFoundException{
 		LOG.info("Buy milk");
 		if(iDealerRepository.existsById(farmerid)) {
-			return "Milk sold successfully";
+			return "Milk buy successfully";
 		}
 		else {
 		throw new  FarmerNotFoundException();

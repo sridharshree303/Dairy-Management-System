@@ -20,7 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.dms.entities.Company;
 import com.cg.dms.entities.Dealer;
+import com.cg.dms.exception.CompanyNotFoundException;
+import com.cg.dms.exception.CustomerNotFoundException;
 import com.cg.dms.exception.DealerNotFoundException;
+import com.cg.dms.exception.FarmerNotFoundException;
 import com.cg.dms.service.CompanyService;
 import com.cg.dms.service.DelearService;
 
@@ -80,10 +83,37 @@ public class DealerController {
 		return response;
 	}
 
-	@GetMapping("/company/?")
+	@GetMapping("/company")
 	public List<Company> getAllCompany() {
 		LOG.info("getAllCompany");
 		List<Company> list = iCompanyService.getAllCompany();
 		return list;
 	}
+	
+	@GetMapping("/sellmilk/delar/{customerId}")
+	public ResponseEntity<String> sellMilk(@PathVariable(name = "customerId")int customerId) throws CustomerNotFoundException{
+		LOG.info("Controller updatefarmer");
+		String sellmilk = idealerService.sellMilk(customerId);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message", "milk sold successfully.");
+		ResponseEntity<String> response = new ResponseEntity<String>(sellmilk, headers, HttpStatus.OK);
+		return response;
+	}
+	
+	@GetMapping("/buyMilk/dealer/{companyid}")
+	public ResponseEntity<String> buyMilk(@PathVariable(name = "companyid")int companyid) throws CompanyNotFoundException{
+		LOG.info("Controller updatefarmer");
+		String buymilk = idealerService.buyMilk(companyid);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message", "milk bought successfully.");
+		ResponseEntity<String> response = new ResponseEntity<String>(buymilk, headers, HttpStatus.OK);
+		return response;	
+		
+	}
+
+	
+	
+	
+	
+	
 }
