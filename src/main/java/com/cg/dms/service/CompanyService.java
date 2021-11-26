@@ -5,6 +5,8 @@ import com.cg.dms.entities.Dealer;
 import com.cg.dms.entities.Farmer;
 import com.cg.dms.exception.CompanyNotFoundException;
 import com.cg.dms.exception.CustomerAlreadyExistsException;
+import com.cg.dms.exception.DealerNotFoundException;
+import com.cg.dms.exception.FarmerNotFoundException;
 import com.cg.dms.repository.ICompanyRepository;
 import com.cg.dms.repository.IDelearRepository;
 import com.cg.dms.repository.IFarmerRepository;
@@ -95,8 +97,31 @@ public class CompanyService implements ICompanyService {
 		return iDealerRepository.findAll();
 	}
 
+//	
+//	public String sellMilk(int dealerId) throws DealerNotFoundException{
+//		LOG.info("sell milk");
+//		if(iDealerRepository.existsById(dealerId)) {
+//			return "Milk sold successfully";
+//		}
+//		else {
+//		throw new  DealerNotFoundException();
+//		}
+//	}
+	
+	public String buyMilk(int farmerid) throws FarmerNotFoundException{
+		LOG.info("Buy milk");
+		if(iDealerRepository.existsById(farmerid)) {
+			return "Milk sold successfully";
+		}
+		else {
+		throw new  FarmerNotFoundException();
+		}
+
 	
 	
 
+	}
+
+	
 }
 

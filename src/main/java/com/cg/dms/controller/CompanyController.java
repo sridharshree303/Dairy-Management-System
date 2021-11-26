@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.dms.entities.Company;
 import com.cg.dms.exception.CompanyNotFoundException;
+import com.cg.dms.exception.DealerNotFoundException;
+import com.cg.dms.exception.FarmerNotFoundException;
 import com.cg.dms.service.CompanyService;
 
 @RestController
@@ -71,11 +73,24 @@ public class CompanyController {
 		return response;
 	}
 	
-	/*
-	 * @GetMapping("/company/all") public List<Company> getAllCompany() {
-	 * LOG.info("getAllCompany");
-	 * 
-	 * return iCompanyService.getAllCompany(); }
-	 */
+//	@GetMapping("/sellmilk/{dealerId}")
+//	public ResponseEntity<String> sellMilk(@PathVariable(name = "dealerId")int dealerId) throws DealerNotFoundException{
+//		LOG.info("Controller updatefarmer");
+//		String sellmilk = iCompanyService.sellMilk(dealerId);
+//		HttpHeaders headers = new HttpHeaders();
+//		headers.add("message", "This company data is updated in database.");
+//		ResponseEntity<String> response = new ResponseEntity<String>(sellmilk, headers, HttpStatus.OK);
+//		return response;
+//	}
+	
+	@GetMapping("/buyMilk/{farmerid}")
+	public ResponseEntity<String> buyMilk(@PathVariable(name = "farmerid")int farmerid) throws FarmerNotFoundException{
+		LOG.info("Controller updatefarmer");
+		String buymilk = iCompanyService.buyMilk(farmerid);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message", "This company data is updated in database.");
+		ResponseEntity<String> response = new ResponseEntity<String>(buymilk, headers, HttpStatus.OK);
+		return response;
+	}
 
 }
