@@ -127,5 +127,23 @@ class CustomExceptionHandler {
 		headers.add("", null);
 		return null;
 	}
+	
+	@ExceptionHandler(UserAlreadyExistsException.class)
+	public ResponseEntity<Object> UserAlreadyExistsException() {
+		LOG.error("UserAlreadyExistsException");
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message", "This user already is exists in the database.");
+		return new ResponseEntity<Object>(null, headers, HttpStatus.ALREADY_REPORTED);
+	}
+	
+	@ExceptionHandler(IncorrectLoginCredentialsException.class)
+	public ResponseEntity<Object> IncorrectLoginCredentialsException() {
+		LOG.error("IncorrectAlreadyExistsException");
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message", "Incorrect login crediti");
+		return new ResponseEntity<Object>(null, headers, HttpStatus.BAD_GATEWAY);
+	}
+	
+	
 
 }

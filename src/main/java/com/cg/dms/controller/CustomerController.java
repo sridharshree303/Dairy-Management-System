@@ -22,6 +22,8 @@ import com.cg.dms.entities.Customer;
 import com.cg.dms.exception.CustomerNotFoundException;
 import com.cg.dms.service.CustomerService;
 
+import io.swagger.models.Response;
+
 @RestController
 public class CustomerController {
 	
@@ -91,9 +93,15 @@ public class CustomerController {
 			
 		}
 	}
-	
-	
-	
-	
+	@GetMapping("/Customer/{user}{password}")
+	public ResponseEntity<Customer> validCustomer(@PathVariable(name="user") String username,@PathVariable(name="password")String password) throws CustomerNotFoundException {
+		LOG.info("customer is valid");
+		Customer custom = customerservice.validateCustomer(username, password);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message","Customer details are found");
+		ResponseEntity<Customer> response =
+				new ResponseEntity<Customer>(custom,headers,HttpStatus.OK);
+		return response;
+	}
 
 }
