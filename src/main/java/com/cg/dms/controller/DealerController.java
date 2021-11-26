@@ -22,6 +22,7 @@ import com.cg.dms.entities.Company;
 import com.cg.dms.entities.Dealer;
 import com.cg.dms.exception.CompanyNotFoundException;
 import com.cg.dms.exception.CustomerNotFoundException;
+import com.cg.dms.exception.DealAlreadyExistsException;
 import com.cg.dms.exception.DealerNotFoundException;
 import com.cg.dms.exception.FarmerNotFoundException;
 import com.cg.dms.service.CompanyService;
@@ -29,7 +30,7 @@ import com.cg.dms.service.DelearService;
 
 @RestController
 public class DealerController {
-
+	//logger
 	private static final Logger LOG = LoggerFactory.getLogger(DealerController.class);
 
 	@Autowired
@@ -39,7 +40,7 @@ public class DealerController {
 	private CompanyService iCompanyService;
 
 	@PostMapping("/dealer")
-	public ResponseEntity<Dealer> adddealer(@Valid @RequestBody Dealer dealer) throws DealerNotFoundException {
+	public ResponseEntity<Dealer> adddealer(@Valid @RequestBody Dealer dealer) throws DealAlreadyExistsException {
 		LOG.info("Controller addDealer");
 		Dealer deal = idealerService.insertDealer(dealer);
 		HttpHeaders headers = new HttpHeaders();
@@ -110,10 +111,5 @@ public class DealerController {
 		return response;	
 		
 	}
-
-	
-	
-	
-	
 	
 }

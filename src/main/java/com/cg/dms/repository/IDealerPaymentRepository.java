@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import com.cg.dms.entities.DealerPayment;
 
+//extends JpaRepository
+
 @Repository
 public interface IDealerPaymentRepository extends JpaRepository<DealerPayment, Integer> {
 

@@ -5,6 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import com.cg.dms.entities.Dealer;
 
+
+// 
+
 @Repository
 public interface IDelearRepository extends JpaRepository<Dealer, Integer> {
 

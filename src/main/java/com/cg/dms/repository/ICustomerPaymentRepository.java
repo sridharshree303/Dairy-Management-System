@@ -5,7 +5,10 @@ import org.springframework.stereotype.Repository;
 
 import com.cg.dms.entities.CustomerPayment;
 
+//extends repository
+
 @Repository
 public interface ICustomerPaymentRepository extends JpaRepository<CustomerPayment, Integer> {
 
+	
 }

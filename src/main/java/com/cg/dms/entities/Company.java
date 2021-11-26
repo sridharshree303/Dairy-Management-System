@@ -1,36 +1,51 @@
 package com.cg.dms.entities;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
 @Entity
 public class Company {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id // primary key
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // auto-generation of integers
 	private int id;
 
 	private String companyName;
 
+	// email annotation
+	@Email  
 	private String email;
 
+	@NotBlank
 	private String password;
 
-	private String mobileNumber;
+	@Column(length = 10)
+	private long mobileNumber;
 
 	private String address;
 
 	public Company() {
 	}
-
-	public Company(String companyName, String email, String password, String mobileNumber, String address) {
+	
+	//constructor
+	public Company(String companyName, String email, String password, long mobileNumber, String address) {
 		this.companyName = companyName;
 		this.email = email;
 		this.password = password;
 		this.mobileNumber = mobileNumber;
 		this.address = address;
 	}
-
-	public Company(int id, String companyName, String email, String password, String mobileNumber, String address) {
+	
+	//constrctor
+	public Company(int id, String companyName, String email, String password, long mobileNumber, String address) {
 		super();
 		this.id = id;
 		this.companyName = companyName;
@@ -40,6 +55,8 @@ public class Company {
 		this.address = address;
 	}
 
+	//getters and setters
+	
 	public int getId() {
 		return id;
 	}
@@ -72,11 +89,11 @@ public class Company {
 		this.password = password;
 	}
 
-	public String getMobileNumber() {
+	public long getMobileNumber() {
 		return mobileNumber;
 	}
 
-	public void setMobileNumber(String mobileNumber) {
+	public void setMobileNumber(long mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 

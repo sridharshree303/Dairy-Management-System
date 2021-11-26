@@ -3,7 +3,7 @@ package com.cg.dms.entities;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
+// class is an entity
 @Entity
 public class CustomerPayment extends Payment{
 
@@ -11,14 +11,20 @@ public class CustomerPayment extends Payment{
 	 * 
 	 */
 	private static final long serialVersionUID = 7267766373145125579L;
-	@ManyToOne
-	@JoinColumn(name="dealerId")
+	// mapping
+	//joined column with primarykey
+	@ManyToOne                    
+	@JoinColumn(name="dealerId")   
 	private Dealer dealer;
 	
+	//mapping 
+	//joins with Customer table 
 	@ManyToOne
-	@JoinColumn(name="customerId")
+	@JoinColumn(name="customerId")  
 	private Customer customer;
 
+	
+	//getters and setters
 	public Dealer getDealer() {
 		return dealer;
 	}

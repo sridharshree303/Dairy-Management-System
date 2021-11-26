@@ -28,7 +28,7 @@ public class CompanyServiceTests {
 	@Test
 	public  void addcompany() {
 
-		Company company  =  new Company ((int)10,(String)"sonu",(String)"S@123",(String)"1234@12",(String)"8133245643",(String)"chennai");
+		Company company  =  new Company ((int)10,(String)"sonu",(String)"S@123",(String)"1234@12",(long)813245643,(String)"chennai");
 		when(companyRepository.save(company)).thenReturn(company);
 		assertEquals(company, companyService.insertCompany(company));
 	}
