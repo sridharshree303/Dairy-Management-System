@@ -30,6 +30,16 @@ public class Company {
 		this.address = address;
 	}
 
+	public Company(int id, String companyName, String email, String password, String mobileNumber, String address) {
+		super();
+		this.id = id;
+		this.companyName = companyName;
+		this.email = email;
+		this.password = password;
+		this.mobileNumber = mobileNumber;
+		this.address = address;
+	}
+
 	public int getId() {
 		return id;
 	}
