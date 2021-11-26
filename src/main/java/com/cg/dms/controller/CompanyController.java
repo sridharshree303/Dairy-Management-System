@@ -73,15 +73,15 @@ public class CompanyController {
 		return response;
 	}
 	
-//	@GetMapping("/sellmilk/{dealerId}")
-//	public ResponseEntity<String> sellMilk(@PathVariable(name = "dealerId")int dealerId) throws DealerNotFoundException{
-//		LOG.info("Controller updatefarmer");
-//		String sellmilk = iCompanyService.sellMilk(dealerId);
-//		HttpHeaders headers = new HttpHeaders();
-//		headers.add("message", "This company data is updated in database.");
-//		ResponseEntity<String> response = new ResponseEntity<String>(sellmilk, headers, HttpStatus.OK);
-//		return response;
-//	}
+	@GetMapping("/sellmilk/cmp/{dealerId}")
+	public ResponseEntity<String> sellMilk(@PathVariable(name = "dealerId")int dealerId) throws DealerNotFoundException{
+		LOG.info("Controller updatefarmer");
+		String sellmilk = iCompanyService.sellMilk(dealerId);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message", "This company data is updated in database.");
+		ResponseEntity<String> response = new ResponseEntity<String>(sellmilk, headers, HttpStatus.OK);
+		return response;
+	}
 	
 	@GetMapping("/buyMilk/{farmerid}")
 	public ResponseEntity<String> buyMilk(@PathVariable(name = "farmerid")int farmerid) throws FarmerNotFoundException{

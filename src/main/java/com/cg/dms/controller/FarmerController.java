@@ -63,7 +63,7 @@ public class FarmerController {
 		return response;
 	}
 	
-	@GetMapping("/sellmilk/{companyid}")
+	@GetMapping("/sellmilk/farmer/{companyid}")
 	public ResponseEntity<String> sellMilk(@PathVariable(name = "companyid")int companyid) throws CompanyNotFoundException{
 		LOG.info("Controller updatefarmer");
 		String sellmilk = iFarmerService.sellMilk(companyid);
