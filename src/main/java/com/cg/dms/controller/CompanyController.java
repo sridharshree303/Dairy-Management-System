@@ -39,7 +39,7 @@ public class CompanyController {
 		ResponseEntity<Company> response = new ResponseEntity<Company>(comp, headers, HttpStatus.OK);
 		return response;
 	}
-
+	// Http://localhost:8082/company/{companyId}
 	@DeleteMapping("/company/{companyid}")
 	public ResponseEntity<Company> deletecompanyById(@Valid @PathVariable(name = "companyid") int companyid)
 			throws CompanyNotFoundException {

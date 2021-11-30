@@ -8,8 +8,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-//mapped superclasshas no separate table 
+//mapped super class has no separate table 
 //applied to the entities that extends [inheritance]
+
 @MappedSuperclass
 public abstract class AbstractUser {
 
@@ -17,15 +18,18 @@ public abstract class AbstractUser {
 	private String userName;
 	@NotNull
 	private String firstName;
-	@NotNull  //not allows null
+	@NotNull // not allows null
 	private String lastName;
+	// password should be between size 4 to 10 characters
 	@NotNull
-	@Size(min = 4, max = 10) // password should be between size 4 to 10 characters
+	@Size(min = 4, max = 10)
 	private String password;
-	@Column(length = 10) // length should be max lenght 10 chars
+	// length should be max lenght 10 chars
+	@Column(length = 10)
 	private long mobileNumber;
+	// Both NotNull and not allows whitespaces
 	@Email
-	@NotBlank // Both NotNull and not allows whitespaces
+	@NotBlank
 	private String email;
 	@NotNull
 	private int milkunits;

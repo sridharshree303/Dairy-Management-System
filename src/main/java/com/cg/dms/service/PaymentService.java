@@ -11,6 +11,8 @@ import com.cg.dms.entities.CompanyPayment;
 import com.cg.dms.entities.CustomerPayment;
 import com.cg.dms.entities.DealerPayment;
 import com.cg.dms.entities.Payment;
+import com.cg.dms.exception.CompanyNotFoundException;
+import com.cg.dms.exception.CustomerNotFoundException;
 import com.cg.dms.exception.PaymentAlreadyFoundException;
 import com.cg.dms.repository.ICompanyPaymentRepository;
 import com.cg.dms.repository.ICustomerPaymentRepository;
@@ -65,5 +67,36 @@ public class PaymentService {
 			return icustomerpaymentrepository.save(payment);
 		}
 	}
+	
+	public double calculateBillForCustomer(int customerid, int milkunits,double price) throws CustomerNotFoundException {
+		
+		if(icustomerpaymentrepository.existsById(customerid)) {
+		double	bill=milkunits*price;
+			return bill;
+		}
+		else {
+			throw new CustomerNotFoundException();
+		}
+		}
+	public double calculateBillForCompany(int companyid, int milkunits,double price) throws CompanyNotFoundException {
+		
+		if(icompanypaymentrepository.existsById(companyid)) {
+		double	bill=milkunits*price;
+			return bill;
+		}
+		else {
+			throw new CompanyNotFoundException();
+		}
+		}
+	public double calculateBillForDealer(int dealerid, int milkunits,double price) throws CompanyNotFoundException {
+		
+		if(idealerpaymentrepo.existsById(dealerid)) {
+		double	bill=milkunits*price;
+			return bill;
+		}
+		else {
+			throw new CompanyNotFoundException();
+		}
+		}
 
 }
